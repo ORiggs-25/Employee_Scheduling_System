@@ -10,13 +10,18 @@ from PIL import ImageTk  # Display background
 import tkinter.font as font
 
 
-def viewSpecificEmployee():
+def callDisplaySingleEmployee():
+    # Want this class to be called upon pressing the button at the bottom of the ViewAllEmployees screen
+    print("Moving To Search Specific Employee...")
+    # Calls the "Display_Single_Employee" class
+
     pass
-    # inside here is where the path for the button will take you to the specific person you asked for
 
 
+# Creates a canvas window to display FirstName and LastName of all employees with button at the bottom
+# that calls other class.
+# We want "Display_All_Employees" to path to "Display_Single_Employee"
 def viewAllEmployees():
-    global lastN, birthday, status, address, id, email, phone, firstN, roleId
     headers = {
         "Content-Type": "application/json",
         "Connection": "keep-alive",
@@ -36,14 +41,34 @@ def viewAllEmployees():
         my_canvas = tk.Canvas(root, width=400, height=200, bd=0, highlightthickness=0)
         my_canvas.pack(fill="both", expand=True)
 
+        # Creates a button at the bottom of the screen to direct user to "Display single employee"
+        create_button = tk.Button(root, text="Search Specific Employee", activeforeground="blue", font=("Helvetica", 10)
+                                  , width=30, height=20, borderwidth=2, command=lambda: callDisplaySingleEmployee())
+        my_canvas.create_window(500, 750, height=30, anchor="nw", window=create_button)
+
+        # Pulls data from server
         request = requests.get("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/employees")
         employeesFromResponse = request.json()["Items"]
+
+        # Instantiates where to place the text in window
         x = -100
         y = 30
+
+        # Loop for fetching each employee information
         for emp in employeesFromResponse:
+
+            # Not finished, but I want this outlineCanvas to be a box around each employee to make it pretty
+            # TO BE DONE LATER
+           # outlineCanvas = tkinter.Canvas(root, bg="light blue", height=120, width=160)
+           # outlineCanvas.pack(fill="none", expand=False)
+
+            # This is for when the employees reach the end of the screen it goes to the next line
             if x > 1000:
                 x = -100
                 y += 200
+
+            # Gathers all info, can copy this code and use for specific employee detail in
+            # "Display_Single_Employee"
             lastN = emp["lastName"]
             birthday = emp["dob"]
             status = emp["status"]
@@ -53,16 +78,15 @@ def viewAllEmployees():
             phone = emp["phone"]
             firstN = emp["firstName"]
             roleId = emp["roleID"]
-            create_button = tk.Button(root, text="View", activeforeground="blue", font=("Helvetica", 10),
-                                      width=15, height=20, borderwidth=2, command=lambda: viewSpecificEmployee())
 
-            my_canvas.create_window(x + 100, y + 20, height=30, anchor="nw", window=create_button)
+            # Offset for next employee so data and listing is not stacked
             x += 150
 
-            for theEmp in range(2):
-
+            # Loop for displaying each employee's specific information
+            for theEmp in range(3):
+                my_canvas.create_text(x, y - 20, text="Employee ID: " + str(id), font=("Helvetica", 10), fill="black")
+                # Take out commented parts for "Display_Single_Employee" to add in more specific data
                 if theEmp == 0:
-                    print("debug")
                     my_canvas.create_text(x, y, text="Last Name: " + lastN, font=("Helvetica", 10), fill="black")
                     """
                 elif theEmp == 2:
@@ -81,6 +105,7 @@ def viewAllEmployees():
                 elif theEmp == 1:
                     my_canvas.create_text(x, y - 10, text="First Name: " + firstN, font=("Helvetica", 10),
                                           fill="black")
+
             # elif theEmp == 9:
             #  my_canvas.create_text(x, y - 160, text="Role ID: " + str(roleId), font=("Helvetica", 10),
             #                        fill="black")
