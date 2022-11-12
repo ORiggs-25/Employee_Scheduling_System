@@ -13,7 +13,7 @@ import tkinter.font as font
 def callDisplaySingleEmployee():
     # Want this class to be called upon pressing the button at the bottom of the ViewAllEmployees screen
     print("Moving To Search Specific Employee...")
-    # Calls the "Display_Single_Employee" class
+    # Want this to calls the "Display_Single_Employee" class
 
     pass
 
@@ -29,6 +29,7 @@ def viewAllEmployees():
 
     try:
 
+        # Opens a new canvas that displays all employees in the database
         root = tk.Tk()
         # renames the title of the window
         root.title("Admin Portal")
@@ -39,7 +40,9 @@ def viewAllEmployees():
 
         # canvas function will create a background for the GUI
         my_canvas = tk.Canvas(root, width=400, height=200, bd=0, highlightthickness=0)
+        my_canvas.configure(bg="light blue")
         my_canvas.pack(fill="both", expand=True)
+
 
         # Creates a button at the bottom of the screen to direct user to "Display single employee"
         create_button = tk.Button(root, text="Search Specific Employee", activeforeground="blue", font=("Helvetica", 10)
@@ -56,11 +59,6 @@ def viewAllEmployees():
 
         # Loop for fetching each employee information
         for emp in employeesFromResponse:
-
-            # Not finished, but I want this outlineCanvas to be a box around each employee to make it pretty
-            # TO BE DONE LATER
-           # outlineCanvas = tkinter.Canvas(root, bg="light blue", height=120, width=160)
-           # outlineCanvas.pack(fill="none", expand=False)
 
             # This is for when the employees reach the end of the screen it goes to the next line
             if x > 1000:
