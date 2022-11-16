@@ -86,7 +86,7 @@ def viewAllEmployees():
                 # Take out commented parts for "Display_Single_Employee" to add in more specific data
                 if theEmp == 0:
                     my_canvas.create_text(x, y, text="Last Name: " + lastN, font=("Helvetica", 10), fill="black")
-                    """
+                '''
                 elif theEmp == 2:
                     my_canvas.create_text(x, y - 20, text="Birthday: " + birthday, font=("Helvetica", 10), fill="black")
                 elif theEmp == 3:
@@ -99,10 +99,12 @@ def viewAllEmployees():
                     my_canvas.create_text(x, y - 100, text="Email: " + email, font=("Helvetica", 10), fill="black")
                 elif theEmp == 7:
                     my_canvas.create_text(x, y - 120, text="Phone: " + phone, font=("Helvetica", 10), fill="black")
-                    """
+                    
                 elif theEmp == 1:
                     my_canvas.create_text(x, y - 10, text="First Name: " + firstN, font=("Helvetica", 10),
                                           fill="black")
+                                          
+                '''
 
             # elif theEmp == 9:
             #  my_canvas.create_text(x, y - 160, text="Role ID: " + str(roleId), font=("Helvetica", 10),
@@ -158,6 +160,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-"""
-
-"""

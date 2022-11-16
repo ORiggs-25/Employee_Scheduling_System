@@ -39,10 +39,6 @@ def main():
     write code: drop down list of employee  
     """
 
-
-
-
-
     # ==================================================================================================================
 
     create_button = tk.Button(root, text="Create Schedule", activeforeground='white', font=("Helvetica", 12),
@@ -55,3 +51,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+

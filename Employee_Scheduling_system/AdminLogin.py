@@ -1,18 +1,10 @@
 # need to create a drop-down menu for roles/position
 import tkinter as tk  # GUI module
 from tkinter import Canvas
+import os
 from PIL import ImageTk  # Display background
 
 def main():
-
-    #------ get functions will call get user's input, creates a new object---------------------------------------------
-    def get_user_name(user_ID):
-       user_ID = entry_ID.get()
-
-    def getPassword(user_password):
-       user_password = entry_password.get()
-    # ------------------------------------------------------------------------------------------------------------------
-
 
     #-----following code pertains to main user input window-------------------------------------------------------------
     # creating object from Tkinter module
@@ -47,7 +39,7 @@ def main():
 
     # We used the Button function in Tkinter which will call the function once clicked
     create_button = tk.Button(root, text="Log in", activeforeground='white', font=("Helvetica", 15),
-                              width=15, height=20, borderwidth=2, command=lambda: getPassword(entry_password))
+                              width=15, height=20, borderwidth=2, command=lambda: os.system("Menu_Display.py"))
 
     create_button_window = my_canvas.create_window(500, 400, height=35, anchor="nw", window=create_button)
 

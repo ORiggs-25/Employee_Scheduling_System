@@ -61,12 +61,13 @@ def main():
 
     create_button_window = my_canvas.create_window(200, 500, height=40, anchor="nw", window=create_button)
 
-    # Exit =============================================================================================
+    # Exit =====================================================================================================
     create_button = tk.Button(root, text="Exit System", activeforeground='blue', font=("Helvetica", 20),
                               width=50, height=50, borderwidth=5,
                               command=lambda: exit())
 
     create_button_window = my_canvas.create_window(200, 600, height=40, anchor="nw", window=create_button)
+    # ==========================================================================================================
 
 
     root.mainloop()

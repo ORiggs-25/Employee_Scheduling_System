@@ -38,6 +38,37 @@ def main():
     def get_ID(IDnumber):
         IDnumber = employeeID.get()
 
+    def printDataInput(first, last, email, dob, phone, position, earn):
+        import tk
+        root = tk.Tk()
+        root.title("Display Employee")
+        root.geometry('1200x800')
+
+        print_fullname = "Fullname     : " + str(first.get()) + " " + str(last.get())
+        full_name = Label(root, text=print_fullname, font=("Helvetica", 21), justify=LEFT)
+        full_name.pack()
+
+        print_email = "Email        : " + str(email.get())
+        display_email = Label(root, text=print_email, font=("Helvetica", 21), justify=LEFT)
+        display_email.pack()
+
+        print_dob = "Date of Birth: " + str(dob.get())
+        display_dob = Label(root, text=print_dob, font=("Helvetica", 21), justify=LEFT)
+        display_dob.pack()
+
+        print_phone = "Phone        : " + str(phone.get())
+        display_phone = Label(root, text=print_phone, font=("Helvetica", 21), justify=LEFT)
+        display_phone.pack()
+
+        print_position = "Position     : " + str(position.get())
+        display_position = Label(root, text=print_position, font=("Helvetica", 21), justify=LEFT)
+        display_position.pack()
+
+        print_earning = "Pay         : $ " + str(earn.get()) + "per hour"
+        display_earn = Label(root, text=print_earning, font=("Helvetica", 21), justify=LEFT)
+        display_earn.pack()
+
+
     def display_an_employee(first, last, IDnumber):
         root = tk.Tk()
         root.title("Display Employee")
@@ -75,7 +106,7 @@ def main():
     # ==================================================================================================================
 
     # create_text function from tkinter will display text onto GUI
-    my_canvas.create_text(575, 50, text="Create a new Employee", font=("Helvetica", 21), fill="white")
+    my_canvas.create_text(575, 50, text="Display Employee", font=("Helvetica", 21), fill="white")
     my_canvas.create_text(300, 140, text="First Name", font=("Helvetica", 16), fill="white")
     my_canvas.create_text(300, 190, text="Last Name", font=("Helvetica", 16), fill="white")
     my_canvas.create_text(300, 240, text="Email", font=("Helvetica", 16), fill="white")
