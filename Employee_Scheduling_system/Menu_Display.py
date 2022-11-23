@@ -34,39 +34,32 @@ def main():
     create_button_window = my_canvas.create_window(200, 100, height=40, anchor="nw", window=create_button)
 
     # Show All Employees button ===============================================================================
-    create_button = tk.Button(root, text="Show All Employees", activeforeground='blue', font=("Helvetica", 20),
+    create_button = tk.Button(root, text="Show Employees", activeforeground='blue', font=("Helvetica", 20),
                               width=50, height=50, borderwidth=5,
                               command=lambda: os.system("Display_All_Employees.py"))
 
     create_button_window = my_canvas.create_window(200, 200, height=40, anchor="nw", window=create_button)
-
-    # Show Employee Info ========================================================================================
-    create_button = tk.Button(root, text="Show Employee Info", activeforeground='blue', font=("Helvetica", 20),
-                              width=50, height=50, borderwidth=5,
-                              command=lambda: os.system("Display_Single_Employee.py"))
-
-    create_button_window = my_canvas.create_window(200, 300, height=40, anchor="nw", window=create_button)
 
     # Assign Schedule ===========================================================================================
     create_button = tk.Button(root, text="Assign Schedule", activeforeground='blue', font=("Helvetica", 20),
                               width=50, height=50, borderwidth=5,
                               command=lambda: os.system("Assign_employees_schedule.py"))
 
-    create_button_window = my_canvas.create_window(200, 400, height=40, anchor="nw", window=create_button)
+    create_button_window = my_canvas.create_window(200, 300, height=40, anchor="nw", window=create_button)
 
     # Show Schedule =============================================================================================
     create_button = tk.Button(root, text="Show Schedule", activeforeground='blue', font=("Helvetica", 20),
                               width=50, height=50, borderwidth=5,
                               command=lambda: os.system("Get_and_Show_Schedule.py"))
 
-    create_button_window = my_canvas.create_window(200, 500, height=40, anchor="nw", window=create_button)
+    create_button_window = my_canvas.create_window(200, 400, height=40, anchor="nw", window=create_button)
 
     # Exit =====================================================================================================
     create_button = tk.Button(root, text="Exit System", activeforeground='blue', font=("Helvetica", 20),
                               width=50, height=50, borderwidth=5,
-                              command=lambda: exit())
+                              command=lambda: os.system("Welcome_Display.py"))
 
-    create_button_window = my_canvas.create_window(200, 600, height=40, anchor="nw", window=create_button)
+    create_button_window = my_canvas.create_window(200, 500, height=40, anchor="nw", window=create_button)
     # ==========================================================================================================
 
 
