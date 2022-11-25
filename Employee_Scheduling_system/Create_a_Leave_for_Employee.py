@@ -50,11 +50,11 @@ def main():
     # ==================================================================================================================
 
     # create_text function from tkinter will display text onto GUI
-    my_canvas.create_text(575, 50, text="Create A Leave (Type Exactly As Shown)", font=("Helvetica", 21), fill="white")
-    my_canvas.create_text(300, 140, text="EmployeeID", font=("Helvetica", 16), fill="white")
-    my_canvas.create_text(300, 190, text="Type: (paid/unpaid)", font=("Helvetica", 16), fill="white")
-    my_canvas.create_text(300, 240, text="Start: (mm/dd/yyyy)", font=("Helvetica", 16), fill="white")
-    my_canvas.create_text(300, 290, text="End: (mm/dd/yyyy)", font=("Helvetica", 16), fill="white")
+    my_canvas.create_text(575, 50, text="Create A Leave (Type Exactly As Shown)", font=("Helvetica", 25), fill="white")
+    my_canvas.create_text(330, 140, text="EmployeeID", font=("Helvetica", 16), fill="white")
+    my_canvas.create_text(330, 190, text="Type: (paid/unpaid)", font=("Helvetica", 16), fill="white")
+    my_canvas.create_text(330, 240, text="Start: (mm/dd/yyyy)", font=("Helvetica", 16), fill="white")
+    my_canvas.create_text(330, 290, text="End: (mm/dd/yyyy)", font=("Helvetica", 16), fill="white")
 
     # create Entry text boxes
     employeeID = tk.Entry(my_canvas, font=("Helvetica", 12), width=50, bg="white", borderwidth=2)
@@ -66,10 +66,10 @@ def main():
     endDate = tk.Entry(my_canvas, font=("Helvetica", 12), width=50, bg="white", borderwidth=2)
     endDate.pack()
 
-    employeeID_window = my_canvas.create_window(375, 125, anchor="nw", window=employeeID)
-    leaveType_window = my_canvas.create_window(375, 175, anchor="nw", window=leaveType)
-    startDate_window = my_canvas.create_window(375, 225, anchor="nw", window=startDate)
-    endDate_window = my_canvas.create_window(375, 275, anchor="nw", window=endDate)
+    employeeID_window = my_canvas.create_window(415, 125, anchor="nw", window=employeeID)
+    leaveType_window = my_canvas.create_window(415, 175, anchor="nw", window=leaveType)
+    startDate_window = my_canvas.create_window(415, 225, anchor="nw", window=startDate)
+    endDate_window = my_canvas.create_window(415, 275, anchor="nw", window=endDate)
 
     create_button = tk.Button(root, text="Create Leave", activeforeground='blue', font=("Helvetica", 15),
                               width=15, height=20, borderwidth=2,
