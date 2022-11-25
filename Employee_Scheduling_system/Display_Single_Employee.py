@@ -44,7 +44,7 @@ def main():
                     if data["roleID"] == 5:
                         data["roleID"] = "Executive"
 
-                    my_canvas.create_text(600, 400, text="Employee Info #" + str(data["id"]), font=("Helvetica", 20), fill="black")
+                    my_canvas.create_text(600, 400, text="Employee ID #" + str(data["id"]), font=("Helvetica", 20), fill="black")
                     my_canvas.create_text(600, 450, text="Full Name : " + data["firstName"] + " " + data["lastName"], font=("Helvetica", 16), fill="black", justify=LEFT)
                     my_canvas.create_text(600, 475, text="Email : " + data["email"], font=("Helvetica", 16), fill="black", justify=LEFT)
                     my_canvas.create_text(600, 500, text="Date of Birth : " + data["dob"], font=("Helvetica", 16), fill="black", justify=LEFT)

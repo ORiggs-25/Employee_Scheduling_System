@@ -1,13 +1,13 @@
-# Olive will work on this.
-# create a menu box with different prompt, when admin click a box then call a file with the associated prompt
-
 import tkinter as tk  # GUI module
 from tkinter import Canvas
 import os   # package to call executable file
 from PIL import ImageTk  # Display background
 
 
+
 def main():
+
+
     # -----following code pertains to main user input window------------------------------------------------------------
     # creating object from Tkinter module
     root = tk.Tk()
@@ -64,6 +64,7 @@ def main():
 
 
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()

@@ -2,7 +2,7 @@ import os   # package to call executable file
 import tkinter as tk  # GUI module
 from tkinter import Canvas
 from PIL import ImageTk  # Display background
-#import EmployeeLogin
+import cv2
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
     create_button_window = my_canvas.create_window(500, 550, height=35, anchor="nw", window=create_button)
 
     root.mainloop()
-
+    #root.destroy()
 
 
 if __name__ == '__main__':

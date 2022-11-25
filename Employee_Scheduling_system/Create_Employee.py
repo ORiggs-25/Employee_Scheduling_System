@@ -84,8 +84,6 @@ def main():
     phone_entry.pack()
     address_entry = tk.Entry(my_canvas, font=("Helvetica", 12), width=50, bg="white", borderwidth=2)
     address_entry.pack()
-    #role_entry = tk.Entry(my_canvas, font=("Helvetica", 12), width=50, bg="white", borderwidth=2)
-    #role_entry.pack()
     # =============== drop down box for employee roles ========================================================
 
     clicked = tk.StringVar()

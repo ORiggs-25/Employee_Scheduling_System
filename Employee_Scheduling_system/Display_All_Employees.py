@@ -23,7 +23,7 @@ try:
     response = requests.get("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/employees")
     jsonData = response.json()["Items"]
 
-    tree = ttk.Treeview(win, column=("Employee ID","First Name", "Last Name", "Status", "Role ID"), show='headings', height=100)
+    tree = ttk.Treeview(win, column=("Employee ID", "First Name", "Last Name", "Status", "Role ID"), show='headings',height=100)
     tree.column("# 1", anchor=CENTER)
     tree.heading("# 1", text="Employee ID")
     tree.column("# 2", anchor=CENTER)
