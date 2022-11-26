@@ -3,6 +3,7 @@ import tkinter as tk
 from PIL import ImageTk
 from tkcalendar import *  # for calendar view
 
+
 def main():
     # -----following code pertains to main user input window------------------------------------------------------------
     # creating object from Tkinter module
@@ -39,10 +40,6 @@ def main():
     write code: drop down list of employee  
     """
 
-
-
-
-
     # ==================================================================================================================
 
     create_button = tk.Button(root, text="Create Schedule", activeforeground='white', font=("Helvetica", 12),
@@ -52,6 +49,7 @@ def main():
     create_button_window = my_canvas.create_window(500, 10, height=20, anchor="nw", window=create_button)
 
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()
