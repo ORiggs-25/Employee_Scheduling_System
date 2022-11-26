@@ -63,7 +63,7 @@ try:
     for employee in arr:
         empID, rol, sd = employee.split(" ")
         tree.insert('', 'end', text="1",
-                    values=(empID, rol, sd))
+                    values=(empID, sd, rol))
 
 
 
