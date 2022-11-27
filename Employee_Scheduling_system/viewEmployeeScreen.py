@@ -1,7 +1,7 @@
 from tkinter import Label, LEFT
 
 
-def printDataInput(first, last, email, dob, phone, position, earn):
+def viewEmployee(first, last, email, dob, phone, position, earn):
     import tk
     root = tk.Tk()
     root.title("Display Employee")

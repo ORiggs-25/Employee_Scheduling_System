@@ -37,7 +37,7 @@ def main():
 
     # ==================================================================================================================
 
-    create_button = tk.Button(root, text="Some Button", activeforeground='white', font=("Helvetica", 15), \
+    create_button = tk.Button(root, text="Some Button", activeforeground='white', font=("Helvetica", 15),
                               width=15, height=20, borderwidth=2,
                               command=lambda: do_something())
 
