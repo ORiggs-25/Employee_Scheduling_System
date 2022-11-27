@@ -24,23 +24,27 @@ def main():
     def grab_date():
         my_label.config(text=str(cal.get_date()))
 
-    def schedule_an_Employee (date, employeeID):
+    def schedule_an_Employee(date, employeeID, leaveType):
         headers = {"Content-Type": "application/json",
                    "Connection": "keep-alive"}
 
         try:
             scheduleEmployee = {
-                "leaveID": "2",
-                "employeeID": "6", #str(employeeID.get()),
-                "id": "2",
-                "scheduledDate": "11/23/2022" #str(date)
+                "leaveID": str(leaveType.get()),
+                "employeeID": str(employeeID.get()),
+                "id": "",       # get auto generated
+                "scheduledDate": str(date)
             }
 
-            response = requests.put("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/attendance/all",
+            response = requests.put("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/create/attendance",
                                     data=json.dumps(scheduleEmployee), headers=headers)
-            print(response.status_code)
+            response_API = ("Code " + str(response.status_code) + ": Shift assigned")
+            my_canvas.create_text(600, 200, text=response_API, font=("Helvetica", 16), fill="white")
+
         except requests.exceptions.HTTPError as err:
-            print(err)
+            response_API = ("Code " + str(err) + ": Failed to assigned")
+            my_canvas.create_text(525, 200, text=response_API, font=("Helvetica", 16), fill="white")
+
 
     # add button to load the date clicked on calendar
     date_button = Button(root, text="Select Date", command=grab_date, bg="blue", fg='white')
@@ -64,14 +68,30 @@ def main():
 
     my_canvas.create_text(600, 20, text="Please enter an employeeID to be assigned into schedule", font=("Helvetica", 14), fill="white")
     my_canvas.create_text(525, 65, text="Employee ID", font=("Helvetica", 16), fill="white")
+    my_canvas.create_text(525, 105, text="Employee's Name", font=("Helvetica", 16), fill="white")
+
     employeeID = tk.Entry(my_canvas, font=("Helvetica", 12), width=15, bg="white", borderwidth=1)
     employeeID.pack()
-    employeeID_entry_window = my_canvas.create_window(600, 55, anchor="nw", window=employeeID)
+    employeeName = tk.Entry(my_canvas, font=("Helvetica", 12), width=15, bg="white", borderwidth=1)
+    employeeName.pack()
+    employeeID_entry_window = my_canvas.create_window(625, 55, anchor="nw", window=employeeID)
+    employeeName_entry_window = my_canvas.create_window(625, 100, anchor="nw", window=employeeName)
+
+
+
+
+    #my_canvas.create_text(525, 110, text="Leave type", font=("Helvetica", 16), fill="white")
+    #leaveType = tk.Entry(my_canvas, font=("Helvetica", 12), width=15, bg="white", borderwidth=1)
+    #leaveType.pack()
+    #leaveType_entry_window = my_canvas.create_window(600, 100, anchor="nw", window=leaveType)
+
+
+
 
 
     assign_button = tk.Button(root, text="Schedule this employee", activeforeground='white', font=("Helvetica", 12),
-                                width=25, height=15, borderwidth=2, command=lambda: schedule_an_Employee(date_button, employeeID))
-    assign_button_window = my_canvas.create_window(500, 110, height=20, anchor="nw", window=assign_button)
+                                width=25, height=15, borderwidth=2, command=lambda: schedule_an_Employee(cal.get_date(), employeeID, employeeName))
+    assign_button_window = my_canvas.create_window(500, 150, height=20, anchor="nw", window=assign_button)
 
 
     root.mainloop()

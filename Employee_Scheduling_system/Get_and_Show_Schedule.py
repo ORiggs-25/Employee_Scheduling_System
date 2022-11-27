@@ -5,8 +5,15 @@ from PIL import ImageTk
 from tkcalendar import *  # for calendar view
 import requests
 
+
 def main():
+    # variable to display name and last name that will be called in the column
+
     def viewSchedule(date_input):
+
+        firstName = ''
+        lastName = ''
+        employeeID = ''
 
         # create table to view schedules ===============================================================================
         # Create an instance of tkinter frame
@@ -27,42 +34,40 @@ def main():
             tree = ttk.Treeview(win, column=("Date", "Employee ID", "First Name", "Last Name"), show='headings',
                                 height=30)
             tree.column("# 1", anchor=CENTER)
-            tree.heading("# 1", text="Date")
+            tree.heading("# 1", text="Attendance ID")
             tree.column("# 2", anchor=CENTER)
-            tree.heading("# 2", text="Employee ID")
+            tree.heading("# 2", text="Scheduled Date")
             tree.column("# 3", anchor=CENTER)
-            tree.heading("# 3", text="First Name")
+            tree.heading("# 3", text="Employee ID")
             tree.column("# 4", anchor=CENTER)
-            tree.heading("# 4", text="Last Name")
+            tree.heading("# 4", text="Leave Type")
+
             response = requests.get("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/attendance/all")
-            jsonData = response.json()["Items"]
+            attendanceData = response.json()["Items"]
 
             employeeInfo = requests.get("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/employees")
             employeeData = employeeInfo.json()["Items"]
 
-            # variable to display name and last name that will be called in the column
-            firstName = ''
-            lastName = ''
-
-
-            for data in jsonData:
+            for data in attendanceData:
                 # Insert the data in Treeview widget
                 if date_input == data["scheduledDate"]:
+                    '''
+                    # search for employee ID to display first and last names
+                    #get_employee_id = getAttendanceID.data['employeeID']
                     for info in employeeData:
-                        if int(data['employeeID']) == info['id']:
+                        if str(info['id']) == data['employeeID']:
                             firstName = info['firstName']
                             lastName = info['lastName']
-                    tree.insert('', 'end', text="1", values=(date_input,
-                                                    data['employeeID'], firstName, lastName))
+                    '''
+                    tree.insert('', 'end', text="1", values=(data["id"], data["scheduledDate"], data["employeeID"], data["leaveID"]))
             tree.pack()
-
 
         except requests.exceptions.HTTPError as err:
             print(err)
 
         win.mainloop()
-    # end of viewSchedule function ====================================================================================
 
+    # end of viewSchedule function ====================================================================================
 
     # -----following code pertains to main user input window------------------------------------------------------------
     # creating object from Tkinter module
@@ -98,11 +103,12 @@ def main():
     # ==================================================================================================================
 
     view_schedule_button = tk.Button(root, text="View Schedule", activeforeground='white', font=("Helvetica", 12),
-                              width=15, height=15, borderwidth=2, command=lambda:viewSchedule(date_input))
+                                     width=15, height=15, borderwidth=2, command=lambda: viewSchedule(cal.get_date()))
 
-    view_schedule_window = my_canvas.create_window(500, 10, height=20, anchor="nw", window=view_schedule_button)
+    view_schedule_window = my_canvas.create_window(525, 10, height=20, anchor="nw", window=view_schedule_button)
 
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()

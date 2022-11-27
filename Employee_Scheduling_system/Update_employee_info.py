@@ -35,6 +35,7 @@ def main():
         phone = ''
         address = ''
         role = 0
+        status = ''
         headers = {"Content-Type": "application/json",
                    "Connection": "keep-alive"}
 
@@ -62,13 +63,13 @@ def main():
                     address = data['address']
                     role = data['roleID']
 
-            edit_employee(firstName, lastName, email, dob, phone, address, role)
+            edit_employee(firstName, lastName, email, dob, phone, address, role, status)
 
         except requests.exceptions.HTTPError as err:
             print(err)
 
     # ==================================================================================================================
-    def edit_employee(first, last, email, dob, phone, address, role):
+    def edit_employee(first, last, email, dob, phone, address, role, status):
 
         # create_text function from tkinter will display text onto GUI
         my_canvas.create_text(300, 200, text="First Name", font=("Helvetica", 16), fill="white")
@@ -78,6 +79,7 @@ def main():
         my_canvas.create_text(300, 400, text="Phone", font=("Helvetica", 16), fill="white")
         my_canvas.create_text(300, 450, text="Address", font=("Helvetica", 16), fill="white")
         my_canvas.create_text(300, 500, text="Role", font=("Helvetica", 16), fill="white")
+        my_canvas.create_text(300, 550, text="Status", font=("Helvetica", 16), fill="white")
 
 
         # create Entry text boxes
@@ -94,13 +96,20 @@ def main():
         address_entry = tk.Entry(my_canvas, font=("Helvetica", 12), width=50, bg="white", borderwidth=2)
         address_entry.pack()
         # =============== drop down box for employee roles ========================================================
-
         clicked = tk.StringVar()
         clicked.set("Select a role")
         drop_entry = tk.OptionMenu(root, clicked, "Intern", "Associate", "Supervisor", "Manager", "Executive")
         drop_entry.pack()
         # roleID = role(clicked.get())
         # ==========================================================================================================
+        # =============== drop down box for employee status ========================================================
+        clicked_status = tk.StringVar()
+        clicked_status.set("Select a status")
+        status_drop_entry = tk.OptionMenu(root, clicked_status, "active", "terminated")
+        status_drop_entry.pack()
+        # ==========================================================================================================
+
+
 
         first_entry_window = my_canvas.create_window(375, 185, anchor="nw", window=first_entry)
         last_entry_window = my_canvas.create_window(375, 240, anchor="nw", window=last_entry)
@@ -111,6 +120,9 @@ def main():
         selectRoleButton = tk.Button(root, text="Select a role", activeforeground='white', font=("Helvetica", 15),
                                      width=15, height=20, borderwidth=1)
         role_button_window = my_canvas.create_window(375, 485, height=35, anchor="nw", window=drop_entry)
+        selectStatusButton = tk.Button(root, text="Select a status", activeforeground='white', font=("Helvetica", 15),
+                                     width=15, height=20, borderwidth=1)
+        status_button_window = my_canvas.create_window(375, 530, height=35, anchor="nw", window=status_drop_entry)
 
         '''
         #Nice to have ==============================================================================================
@@ -151,9 +163,9 @@ def main():
         update_employee = tk.Button(root, text="Save", activeforeground='white', width=15,
                                     font=("Helvetica", 15), height=20, borderwidth=2,
                                     command=lambda: confirm_update(first_entry, last_entry, email_entry, dob_entry,
-                                                                   phone_entry, address_entry, clicked.get()))
+                                                                   phone_entry, address_entry, clicked.get(),clicked_status))
 
-        update_employee_window = my_canvas.create_window(500, 560, height=35, anchor="nw", window=update_employee)
+        update_employee_window = my_canvas.create_window(500, 600, height=35, anchor="nw", window=update_employee)
 
         root.mainloop()
 
@@ -169,7 +181,7 @@ def main():
         elif role == "Executive":
             return '5'
 
-    def confirm_update(first, last, email, dob, phone, address, role):
+    def confirm_update(first, last, email, dob, phone, address, role, status):
             headers = {"Content-Type": "application/json",
                        "Connection": "keep-alive"}
 
@@ -179,7 +191,7 @@ def main():
                 updateEmployee = {
                     "lastName": str(last.get()),
                     "dob": str(dob.get()),
-                    "status": "Active",  # active by default
+                    "status": str(status.get()),
                     "address": str(address.get()),
                     "id": str(employeeID.get()),
                     "email": str(email.get()),
