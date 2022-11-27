@@ -12,7 +12,7 @@ def main():
     # creating object from Tkinter module
     root = tk.Tk()
     # renames the title of the window
-    root.title("Assign Employee")
+    root.title("Assign Employee to a Shift")
     # sets the dimensions of the window to measurement
     root.geometry('1200x800')
     # prevents user to resize the window

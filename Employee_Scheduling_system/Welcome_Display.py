@@ -1,4 +1,5 @@
 import os   # package to call executable file
+import sys
 import tkinter as tk  # GUI module
 from tkinter import Canvas
 from PIL import ImageTk  # Display background
@@ -6,6 +7,7 @@ import cv2
 
 
 def main():
+
     # -----following code pertains to main user input window------------------------------------------------------------
     # creating object from Tkinter module
     root = tk.Tk()
@@ -28,19 +30,17 @@ def main():
     my_canvas.create_text(575, 250, text="Employee Scheduling System", font=("Helvetica", 30), fill="white")
     my_canvas.create_text(575, 300, text="click your login option", font=("Helvetica", 15), fill="white")
 
-    create_button = tk.Button(root, text="Admin Login", activeforeground='white', font=("Helvetica", 15),
+    create_button1 = tk.Button(root, text="Admin Login", activeforeground='white', font=("Helvetica", 15),
                               width=15, height=20, borderwidth=2,
-                              command=lambda: os.system("AdminLogin.py"))
-    create_button_window = my_canvas.create_window(500, 500, height=35, anchor="nw", window=create_button)
+                              command=lambda: [root.destroy(), os.system("AdminLogin.py")]) #lambda takes two argument
+    create_button1_window = my_canvas.create_window(500, 500, height=35, anchor="nw", window=create_button1)
 
 
-    create_button = tk.Button(root, text="Employee Login", activeforeground='white', font=("Helvetica", 15),
+    create_button2 = tk.Button(root, text="Employee Login", activeforeground='white', font=("Helvetica", 15),
                               width=15, height=20, borderwidth=2, command=lambda: None)
-    create_button_window = my_canvas.create_window(500, 550, height=35, anchor="nw", window=create_button)
+    create_button2_window = my_canvas.create_window(500, 550, height=35, anchor="nw", window=create_button2)
 
     root.mainloop()
-    #root.destroy()
-
 
 if __name__ == '__main__':
     main()

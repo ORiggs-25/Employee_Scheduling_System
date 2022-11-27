@@ -3,6 +3,7 @@ import tkinter as tk  # GUI module
 from tkinter import Canvas
 import os
 from PIL import ImageTk  # Display background
+import Welcome_Display
 
 def main():
 
@@ -39,7 +40,7 @@ def main():
 
     # We used the Button function in Tkinter which will call the function once clicked
     create_button = tk.Button(root, text="Log in", activeforeground='white', font=("Helvetica", 15),
-                              width=15, height=20, borderwidth=2, command=lambda: os.system("Menu_Display.py"))
+                              width=15, height=20, borderwidth=2, command=lambda: [root.destroy(), os.system("Menu_Display.py")])
 
     create_button_window = my_canvas.create_window(500, 400, height=35, anchor="nw", window=create_button)
 

@@ -8,7 +8,7 @@ import requests
 def main():
     # -----following code pertains to main user input window------------------------------------------------------------
     # creating object from Tkinter module
-    global employeeID
+
     root = tk.Tk()
     # renames the title of the window
     root.title("Update Employee Display")
@@ -28,6 +28,7 @@ def main():
     # ==================================================================================================================
     def fetch_employee_info():
 
+        employeeID = ''
         firstName = ''
         lastName = ''
         email = ''
@@ -55,6 +56,7 @@ def main():
                     if data["roleID"] == 5:
                         data["roleID"] = "Executive"
 
+                    employeeID = data['id'].set()
                     firstName = data['firstName']
                     lastName = data['lastName']
                     email = data['email']
@@ -63,13 +65,13 @@ def main():
                     address = data['address']
                     role = data['roleID']
 
-            edit_employee(firstName, lastName, email, dob, phone, address, role, status)
+            edit_employee(employeeID, firstName, lastName, email, dob, phone, address, role, status)
 
         except requests.exceptions.HTTPError as err:
             print(err)
 
     # ==================================================================================================================
-    def edit_employee(first, last, email, dob, phone, address, role, status):
+    def edit_employee(employeeId, first, last, email, dob, phone, address, role, status):
 
         # create_text function from tkinter will display text onto GUI
         my_canvas.create_text(300, 200, text="First Name", font=("Helvetica", 16), fill="white")
@@ -162,7 +164,7 @@ def main():
         # Once user hit save, the system validates input and check whether account exists or not.
         update_employee = tk.Button(root, text="Save", activeforeground='white', width=15,
                                     font=("Helvetica", 15), height=20, borderwidth=2,
-                                    command=lambda: confirm_update(first_entry, last_entry, email_entry, dob_entry,
+                                    command=lambda: confirm_update(employeeID, first_entry, last_entry, email_entry, dob_entry,
                                                                    phone_entry, address_entry, clicked.get(),clicked_status))
 
         update_employee_window = my_canvas.create_window(500, 600, height=35, anchor="nw", window=update_employee)
@@ -181,7 +183,7 @@ def main():
         elif role == "Executive":
             return '5'
 
-    def confirm_update(first, last, email, dob, phone, address, role, status):
+    def confirm_update(employeeID, first, last, email, dob, phone, address, role, status):
             headers = {"Content-Type": "application/json",
                        "Connection": "keep-alive"}
 
