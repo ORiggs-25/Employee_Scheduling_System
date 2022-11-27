@@ -22,8 +22,9 @@ try:
     response = requests.get("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/employees")
     jsonData = response.json()["Items"]
 
-    tree = ttk.Treeview(win, column=("Employee ID", "First Name", "Last Name", "Status", "Role ID"), show='headings',
-                        height=100)
+
+    tree = ttk.Treeview(win, column=("Employee ID", "First Name", "Last Name", "Status", "Role ID"), show='headings',height=100)
+
     tree.column("# 1", anchor=CENTER)
     tree.heading("# 1", text="Employee ID")
     tree.column("# 2", anchor=CENTER)
@@ -34,6 +35,7 @@ try:
     tree.heading("# 4", text="Status")
     tree.column("# 5", anchor=CENTER)
     tree.heading("# 5", text="Role ID")
+
 
     for data in jsonData:
         if data["roleID"] == 1:
@@ -48,12 +50,15 @@ try:
             data["roleID"] = "Executive"
 
         # Insert the data in Treeview widget
-        tree.insert('', 'end', text="1",
-                    values=(data['id'], data['firstName'], data['lastName'], data['status'], data['roleID']))
+
+        tree.insert('', 'end', text="1", values=(data['id'], data['firstName'], data['lastName'], data['status'], data['roleID']))
+
     tree.pack()
 
 except requests.exceptions.HTTPError as err:
     print(err)
 # Add a Treeview widget
 
+
 win.mainloop()
+

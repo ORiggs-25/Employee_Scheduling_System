@@ -1,18 +1,18 @@
-# Olive will work on this.
-# create a menu box with different prompt, when admin click a box then call a file with the associated prompt
-
 import tkinter as tk  # GUI module
 from tkinter import Canvas
-
+import os   # package to call executable file
 from PIL import ImageTk  # Display background
 
 
+
 def main():
+
+
     # -----following code pertains to main user input window------------------------------------------------------------
     # creating object from Tkinter module
     root = tk.Tk()
     # renames the title of the window
-    root.title("Some Display")
+    root.title("Menu Display")
     # sets the dimensions of the window to measurement
     root.geometry('1200x800')
     # prevents user to resize the window
@@ -23,30 +23,48 @@ def main():
     my_canvas.pack(fill="both", expand=True)
 
     # using pillow's ImageTk class and PhotoImage function to display background photo
-    bg = ImageTk.PhotoImage(file="BasicBlue.jpeg")
+    bg = ImageTk.PhotoImage(file="background.png")
     my_canvas.create_image(0, 0, image=bg, anchor="nw")
 
-    def do_something():
-        pass
+    # Create Employee button =================================================================================
+    create_button = tk.Button(root, text="Create/Add Employee", activeforeground='blue', font=("Helvetica", 20),
+                              width=50, height=50, borderwidth=5,
+                              command=lambda: os.system("Create_Employee.py"))
 
-    # ==================================================================================================================
-    """
-    Enter your function code here
-    ......................
-    ......................
-    ......................
-    """
+    create_button_window = my_canvas.create_window(200, 100, height=40, anchor="nw", window=create_button)
 
+    # Show All Employees button ===============================================================================
+    create_button = tk.Button(root, text="Show Employees", activeforeground='blue', font=("Helvetica", 20),
+                              width=50, height=50, borderwidth=5,
+                              command=lambda: os.system("Display_All_Employees.py"))
 
-    # ==================================================================================================================
+    create_button_window = my_canvas.create_window(200, 200, height=40, anchor="nw", window=create_button)
 
-    create_button = tk.Button(root, text="Some Button", activeforeground='white', font=("Helvetica", 15), \
-                              width=15, height=20, borderwidth=2,
-                              command=lambda: do_something())
+    # Assign Schedule ===========================================================================================
+    create_button = tk.Button(root, text="Assign Schedule", activeforeground='blue', font=("Helvetica", 20),
+                              width=50, height=50, borderwidth=5,
+                              command=lambda: os.system("Assign_employees_schedule.py"))
 
-    create_button_window = my_canvas.create_window(550, 550, height=35, anchor="nw", window=create_button)
+    create_button_window = my_canvas.create_window(200, 300, height=40, anchor="nw", window=create_button)
+
+    # Show Schedule =============================================================================================
+    create_button = tk.Button(root, text="Show Schedule", activeforeground='blue', font=("Helvetica", 20),
+                              width=50, height=50, borderwidth=5,
+                              command=lambda: os.system("Get_and_Show_Schedule.py"))
+
+    create_button_window = my_canvas.create_window(200, 400, height=40, anchor="nw", window=create_button)
+
+    # Exit =====================================================================================================
+    create_button = tk.Button(root, text="Exit System", activeforeground='blue', font=("Helvetica", 20),
+                              width=50, height=50, borderwidth=5,
+                              command=lambda: os.system("Welcome_Display.py"))
+
+    create_button_window = my_canvas.create_window(200, 500, height=40, anchor="nw", window=create_button)
+    # ==========================================================================================================
+
 
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()

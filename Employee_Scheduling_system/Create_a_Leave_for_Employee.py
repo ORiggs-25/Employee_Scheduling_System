@@ -2,6 +2,7 @@ import json
 import tkinter as tk  # GUI module
 import requests
 from tkinter import Canvas, LEFT
+
 from PIL import ImageTk  # Display background
 
 
@@ -10,7 +11,9 @@ def main():
     # creating object from Tkinter module
     root = tk.Tk()
     # renames the title of the window
+
     root.title("Create Employee Leave")
+
     # sets the dimensions of the window to measurement
     root.geometry('1200x800')
     # prevents user to resize the window
@@ -23,6 +26,7 @@ def main():
     # using pillow's ImageTk class and PhotoImage function to display background photo
     bg = ImageTk.PhotoImage(file="BasicBlue.jpeg")
     my_canvas.create_image(0, 0, image=bg, anchor="nw")
+
 
     # ===============================================================================================================
 
@@ -79,6 +83,7 @@ def main():
     create_button_window = my_canvas.create_window(500, 325, height=35, anchor="nw", window=create_button)
 
     root.mainloop()
+
 
 
 if __name__ == '__main__':
