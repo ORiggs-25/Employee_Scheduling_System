@@ -6,6 +6,7 @@ import requests
 from PIL import ImageTk
 from tkcalendar import *  # for calendar view
 
+
 def main():
     # -----following code pertains to main user input window------------------------------------------------------------
     # creating object from Tkinter module
@@ -89,12 +90,14 @@ def main():
 
 
 
+
     assign_button = tk.Button(root, text="Schedule this employee", activeforeground='white', font=("Helvetica", 12),
                                 width=25, height=15, borderwidth=2, command=lambda: schedule_an_Employee(cal.get_date(), employeeID, employeeName))
     assign_button_window = my_canvas.create_window(500, 150, height=20, anchor="nw", window=assign_button)
 
 
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()

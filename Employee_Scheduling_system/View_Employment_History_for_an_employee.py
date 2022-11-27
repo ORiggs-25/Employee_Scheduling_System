@@ -1,53 +1,102 @@
-# NEED TO BE IMPLEMENTED
+from tkinter import *
+from tkinter import ttk
+
+# INCOMPLETE AS OF THIS PUSH
+import requests
+
+# Create an instance of tkinter frame
+win = Tk()
+
+# Set the size of the tkinter window
+win.geometry("1200x800")
+
+# Create an object of Style widget
+style = ttk.Style()
+style.theme_use('clam')
+# Configure the style of Heading in Treeview widget
+style.configure('Treeview.Heading', background="light yellow")
+
+headers = {"Content-Type": "application/json",
+           "Connection": "keep-alive"}
+
+try:
+
+    response = requests.get("https://uhwxroslh0.execute-api.us-east-1.amazonaws.com/dev/employmentHistory")
+    jsonData = response.json()["Items"]
+
+    tree = ttk.Treeview(win, column=("Employee ID", "Start Date", "Role ID"), show='headings',
+                        height=100)
+    tree.column("# 1", anchor=CENTER)
+    tree.heading("# 1", text="Employee ID")
+    tree.column("# 2", anchor=CENTER)
+    tree.heading("# 2", text="Start Date")
+    tree.column("# 3", anchor=CENTER)
+    tree.heading("# 3", text="Role ID")
+
+    arr = []  # An array is declared, so we can iterate through the numbers in the database
+    res = []
+    # 200 max employees
+
+    counter = 0
 
 
 
-import tkinter as tk  # GUI module
-from tkinter import Canvas
 
-from PIL import ImageTk  # Display background
+    for data in jsonData:
+        if data["roleID"] == "1":
+            data["roleID"] = "Intern"
+        elif data["roleID"] == "2":
+            data["roleID"] = "Associate"
+        elif data["roleID"] == "3":
+            data["roleID"] = "Supervisor"
+        elif data["roleID"] == "4":
+            data["roleID"] = "Manager"
+        if data["roleID"] == "5":
+            data["roleID"] = "Executive"
 
+        emplID = data['employeeID']
+        rolID = data['roleID']
+        sd = data['start_date']
+        arr.append(emplID + " " + rolID + " " + sd)
+        arr.sort()
 
-def main():
-    # -----following code pertains to main user input window------------------------------------------------------------
-    # creating object from Tkinter module
-    root = tk.Tk()
-    # renames the title of the window
-    root.title("Some Display")
-    # sets the dimensions of the window to measurement
-    root.geometry('1200x800')
-    # prevents user to resize the window
-    root.resizable(width=False, height=False)
-
-    # canvas function will create a background for the GUI
-    my_canvas: Canvas = tk.Canvas(root, width=1200, height=800, bd=0, highlightthickness=0)
-    my_canvas.pack(fill="both", expand=True)
-
-    # using pillow's ImageTk class and PhotoImage function to display background photo
-    bg = ImageTk.PhotoImage(file="BasicBlue.jpeg")
-    my_canvas.create_image(0, 0, image=bg, anchor="nw")
-
-    def do_something():
-        pass
-
-    # ==================================================================================================================
-    """
-    Enter your function code here
-    ......................
-    ......................
-    ......................
-    """
+    for employee in arr:
+        empID, rol, sd = employee.split(" ")
+        tree.insert('', 'end', text="1",
+                    values=(empID, sd, rol))
 
 
-    # ==================================================================================================================
 
-    create_button = tk.Button(root, text="Some Button", activeforeground='white', font=("Helvetica", 15),
-                              width=15, height=20, borderwidth=2,
-                              command=lambda: do_something())
 
-    create_button_window = my_canvas.create_window(550, 550, height=35, anchor="nw", window=create_button)
+    tree.pack()
 
-    root.mainloop()
+    ''' #OLD CODE
+        
+        print(data)
+        currentEmployee = data['employeeID']
+        print(currentEmployee)
+        arr.append(currentEmployee)
+        print(arr)
+        res = [*set(arr)]
+        res.sort()
+        print(res)
+        for currentEmployee in jsonData:
+            for x in range(len(res)):
+                if currentEmployee == res[int(x)]:
+                    print(currentEmployee['roleID'])
+                    
+        
 
-if __name__ == '__main__':
-    main()
+        tree.insert('', 'end', text="1",
+                    values=(data['employeeID'], data['id'], data['start_date'], data['roleID']))
+    tree.pack()
+    
+    '''
+
+except requests.exceptions.HTTPError as err:
+    print(err)
+# Add a Treeview widget
+
+
+win.mainloop()
+
